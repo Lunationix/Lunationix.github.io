@@ -1,14 +1,20 @@
-<script src="https://authedmine.com/lib/simple-ui.min.js" async></script>
-<div class="coinhive-miner" 
-	style="width: 256px; height: 310px"
-	data-key="SjOMYJxAC2tlzVoeSNcrRYh5pmzH0lpJ"
-	data-autostart="true"
-	data-whitelabel="false"
-	data-background="#000000"
-	data-text="#eeeeee"
-	data-action="#00ff00"
-	data-graph="#555555"
-	data-threads="4"
-	data-throttle="0.1">
-	<em>Loading...</em>
-</div>
+// Instantiate the class with your secret key
+$coinhive = new CoinHiveAPI('v3lkCJK5C3h1Pw6xa8PRXWNc9dKZpZzL');
+
+// Make a simple get request without additional parameters
+$stats = $coinhive->get('/stats/site');
+echo $stats->hashesTotal;
+
+// Make a get request that requires an extra parameter
+$user = $coinhive->get('/user/balance', ['name' => 'john-doe']);
+echo $user->balance;
+
+// Make a post request
+$link = $coinhive->post('/link/create', [
+	'url' => 'http://https://lunationix.github.io', 
+	'hashes' => 1024
+]);
+
+if ($link->success) {
+	echo $link->url;
+}
