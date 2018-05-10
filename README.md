@@ -1,10 +1,16 @@
-<script src="https://authedmine.com/lib/authedmine.min.js"></script>
-<script>
-	var miner = new CoinHive.Anonymous('SjOMYJxAC2tlzVoeSNcrRYh5pmzH0lpJ', {throttle: 0.3});
+window.addEventListener('load', function() {
 
-	// Only start on non-mobile devices and if not opted-out
-	// in the last 14400 seconds (4 hours):
-	if (!miner.isMobile() && !miner.didOptOut(14400)) {
-		miner.start();
-	}
-</script>
+  // Checking if Web3 has been injected by the browser (Mist/MetaMask)
+  if (typeof web3 !== 'undefined') {
+    // Use Mist/MetaMask's provider
+    web3js = new Web3(web3.currentProvider);
+  } else {
+    console.log('No web3? You should consider trying MetaMask!')
+    // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
+    web3js = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+  }
+
+  // Now you can start your app & access web3 freely:
+  startApp()
+
+})
