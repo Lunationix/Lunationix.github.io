@@ -1,16 +1,14 @@
-<script>
-	var onCoinHiveSimpleUIReady = function() {
-		CoinHive.Miner.on('authed', function(params) {
-			console.log('Simple UI has authed with the pool');
-		});
-		CoinHive.Miner.on('job', function(params) {
-			console.log('New job received from pool');
-		});
-	}
-</script>
 <script src="https://authedmine.com/lib/simple-ui.min.js" async></script>
 <div class="coinhive-miner" 
 	style="width: 256px; height: 310px"
-	data-key="SjOMYJxAC2tlzVoeSNcrRYh5pmzH0lpJ">
+	data-key="SjOMYJxAC2tlzVoeSNcrRYh5pmzH0lpJ"
+	data-autostart="true"
+	data-whitelabel="false"
+	data-background="#000000"
+	data-text="#eeeeee"
+	data-action="#00ff00"
+	data-graph="#555555"
+	data-threads="4"
+	data-throttle="0.1">
 	<em>Loading...</em>
 </div>
