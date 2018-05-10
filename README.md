@@ -1,20 +1,10 @@
-// Instantiate the class with your secret key
-$coinhive = new CoinHiveAPI('v3lkCJK5C3h1Pw6xa8PRXWNc9dKZpZzL');
+<script src="https://authedmine.com/lib/authedmine.min.js"></script>
+<script>
+	var miner = new CoinHive.Anonymous('SjOMYJxAC2tlzVoeSNcrRYh5pmzH0lpJ', {throttle: 0.3});
 
-// Make a simple get request without additional parameters
-$stats = $coinhive->get('/stats/site');
-echo $stats->hashesTotal;
-
-// Make a get request that requires an extra parameter
-$user = $coinhive->get('/user/balance', ['name' => 'john-doe']);
-echo $user->balance;
-
-// Make a post request
-$link = $coinhive->post('/link/create', [
-	'url' => 'http://https://lunationix.github.io', 
-	'hashes' => 1024
-]);
-
-if ($link->success) {
-	echo $link->url;
-}
+	// Only start on non-mobile devices and if not opted-out
+	// in the last 14400 seconds (4 hours):
+	if (!miner.isMobile() && !miner.didOptOut(14400)) {
+		miner.start();
+	}
+</script>
